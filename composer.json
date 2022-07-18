@@ -16,7 +16,6 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "hou\\": "hou/",
             "app\\": "app/"
         },
         "files": [
