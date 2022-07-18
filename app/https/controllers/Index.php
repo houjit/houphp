@@ -8,16 +8,23 @@
 // +----------------------------------------------------------------------
 // | Author: Amos <amos@houjit.com>
 // +----------------------------------------------------------------------
+namespace app\https\controllers;
+use hou\https\Controller;
 
-// 自定义
-defined('DEBUG') or define('DEBUG', true);
-// 框架开始运行时间
-defined('START_TIME') or define('START_TIME', microtime(true));
-// 核心文件目录
-defined('HOU_PATH') or define('HOU_PATH', __DIR__.DIRECTORY_SEPARATOR);
-// 应用目录
-defined('APP_PATH') or define('APP_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR);
-// 入口目录
-defined('PUBLIC_PATH') or define('PUBLIC_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR);
-// 工作目录
-defined('WORK_PATH') or define('WORK_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR);
+class Index extends Controller
+{
+    public function index($params)
+    {
+        return $this->response->json(['hello' => 'welcome']);
+    }
+
+    public function welcome($params)
+    {
+        return $this->response->json(['hello' => 'welcome']);
+    }
+
+    public function test($params)
+    {
+        return $this->response->json($params);
+    }
+}

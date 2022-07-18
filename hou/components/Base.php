@@ -12,7 +12,7 @@ namespace hou\components;
 
 class Base implements \ArrayAccess
 {
-    private $_container;
+    private $container;
 
     public function __get($name)
     {
@@ -33,23 +33,23 @@ class Base implements \ArrayAccess
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
-            $this->_container[] = $value;
+            $this->container[] = $value;
         } else {
-            $this->_container[$offset] = $value;
+            $this->container[$offset] = $value;
         }
     }
     public function offsetExists($offset)
     {
-        return isset($this->_container[$offset]);
+        return isset($this->container[$offset]);
     }
 
     public function offsetUnset($offset)
     {
-        unset($this->_container[$offset]);
+        unset($this->container[$offset]);
     }
 
     public function offsetGet($offset)
     {
-        return isset($this->_container[$offset]) ? $this->_container[$offset] : null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 }

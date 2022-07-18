@@ -12,9 +12,18 @@
 // +----------------------------------------------------------------------
 namespace hou\https;
 use hou\components\Base;
+use hou\exceptions\NotFoundException;
 
 class Request extends Base
 {
+    const HTTP_METHOD_GET = 'GET';
+
+    // app应用控制器命名空间
+    private $_controllerNameSpace = 'app\\https\\controllers';
+
+    // 之前定义的基类控制器
+    private $_baseController = 'hou\\https\\Controller';
+
     /**
      * 获取请求方法
      * @return string
@@ -24,7 +33,7 @@ class Request extends Base
         if (isset($_SERVER['REQUEST_METHOD'])) {
             return strtoupper($_SERVER['REQUEST_METHOD']);
         }
-        return 'GET';
+        return self::HTTP_METHOD_GET;
     }
 
     /**
@@ -38,10 +47,11 @@ class Request extends Base
         $name = ucfirst($name);
         if (function_exists('apache_request_headers')) {
             $headers = apache_request_headers();
+            p($_SERVER);
             return $headers[$name]?? $defaultValue;
         }
-        $name = strtoupper($name);
-        return $_SERVER[$name]?? $defaultValue;
+        $name = strtoupper(str_replace('-', '_', $name));
+        return $_SERVER[$name]?? ($_SERVER['HTTP_'.$name] ?? $defaultValue);
     }
 
     /**
@@ -102,11 +112,13 @@ class Request extends Base
     public function getBodyParams()
     {
         $contentType = strtolower($this->getHeader('Content-Type'));
-        if ($contentType == 'multipart/form-data') {
-            $this->bodyParams = $_POST;
-        } else {
+        // p($contentType);
+        if (strpos($contentType, 'multipart/form-data') === false) {
             $this->bodyParams = \json_decode(file_get_contents("php://input"), true);
+        } else {
+            $this->bodyParams = $_POST;
         }
+
         return $this->bodyParams?? [];
     }
 
@@ -120,5 +132,96 @@ class Request extends Base
      */
     private $bodyParams = [];
 
+    private $routeParams = [];
+
     private $method;
+
+    private $route = [];
+
+
+    /**
+     * 控制器处理
+     * @param $route
+     * @return mixed
+     * @throws NotFoundException
+     */
+    public function runAction($route)
+    {
+        if (array_key_exists($route, $this->route)) {
+            $route = $this->route[$route];
+        }
+
+        $match = explode('/', $route);
+        $match = array_filter($match);
+
+        // 处理$route=/
+        if (empty($match))
+        {
+            $match = ['index'];
+            $controller = $this->createController($match);
+            $action = 'index';
+
+            // 处理$route=index
+        } elseif (count($match) < 2) {
+            $controller = $this->createController($match);
+            $action = 'index';
+        } else {
+            $action = array_pop($match);
+            $controller = $this->createController($match);
+            if (!method_exists($controller, $action)) {
+                throw new NotFoundException("method not found:".$action);
+            }
+        }
+
+        return $controller->$action(array_merge($this->getQueryParams(), $this->getBodyParams()));
+    }
+
+    public function createController($match)
+    {
+        $controllerName = $this->_controllerNameSpace;
+
+        foreach ($match as $namespace) {
+            $controllerName .= '\\'.ucfirst($namespace);
+        }
+
+        // todo 自定义控制器后缀，如：$controllerName = $controllerName . 'Controller';
+        $controllerName = $controllerName;
+
+        if (!class_exists($controllerName))
+        {
+            if ($controllerName == $this->_controllerNameSpace.'Index')
+            {
+                return new $this->_baseController;
+            }
+            throw new NotFoundException("controller not found:".$controllerName);
+        }
+
+        return new $controllerName;
+    }
+
+    /**
+     * 返回不含参数的REQUEST_URI地址与GET参数
+     */
+    public function resolve($route)
+    {
+        $this->route = $route;
+        return $this->getPathUrl();
+    }
+
+
+    private $pathUrl;
+
+    /**
+     * 获取请求地址
+     * @return bool|mixed|string
+     */
+    public function getPathUrl()
+    {
+        if (is_null($this->pathUrl)) {
+            $arr = parse_url(trim($_SERVER['REQUEST_URI'], '/'));
+            $this->pathUrl = $arr['path']??'';
+        }
+
+        return $this->pathUrl;
+    }
 }

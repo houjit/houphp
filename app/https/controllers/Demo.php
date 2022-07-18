@@ -9,7 +9,7 @@
 // | Author: Amos <amos@houjit.com>
 // +----------------------------------------------------------------------
 namespace app\https\controllers;
-use library\https\controller;
+use hou\https\controller;
 
 class Demo extends Controller
 {

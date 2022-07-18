@@ -1,10 +1,11 @@
 {
-    "name": "amos/houphp",
+    "name": "houjit/houphp",
     "description": "HouPHP框架",
     "type": "project",
     "require": {
         "php": ">=7.2.0",
-        "ext-redis": "^5.3"
+        "ext-redis": "^5.3",
+        "psr/container": "2.0.x-dev"
     },
     "license": "MIT",
     "authors": [
@@ -16,6 +17,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
+            "hou\\": "hou/",
             "app\\": "app/"
         },
         "files": [

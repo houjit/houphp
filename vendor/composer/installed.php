@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '59ee5bb3e99139b93cbd2e6c2322c44ddffc1251',
+    'reference' => 'de27dc02468e87239f484b4c1b0a58265204a418',
     'name' => 'amos/houphp',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '59ee5bb3e99139b93cbd2e6c2322c44ddffc1251',
+      'reference' => 'de27dc02468e87239f484b4c1b0a58265204a418',
     ),
   ),
 );

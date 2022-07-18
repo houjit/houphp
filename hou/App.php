@@ -13,13 +13,13 @@ use hou\exceptions\SaiException;
 use hou\https\Request;
 use hou\https\Response;
 
-class Application
+class App
 {
     // app应用控制器命名空间
     private $controllerNameSpace = 'app\\https\\controllers\\';
 
     // 之前定义的基类控制器
-    private $baseController = 'library\\https\\controller';
+    private $baseController = 'hou\\https\\controller';
 
     private $config;
 
@@ -68,7 +68,8 @@ class Application
         $match = array_filter($match);
 
         // 处理$route=/
-        if (empty($match)) {
+        if (empty($match))
+        {
             $match = ['index'];
             $controller = $this->createController($match);
             $action = 'index';
@@ -100,7 +101,8 @@ class Application
 
         $controllerName = rtrim($controllerName,'\\').'Controller';
 
-        if (!class_exists($controllerName)) {
+        if (!class_exists($controllerName))
+        {
             if ($controllerName == $this->controllerNameSpace.'IndexController') {
                 return new $this->baseController;
             }
