@@ -1,0 +1,26 @@
+{
+    "name": "amos/houphp",
+    "description": "HouPHP框架",
+    "type": "project",
+    "require": {
+        "php": ">=7.2.0",
+        "ext-redis": "^5.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Houjit",
+            "email": "amos@houjit.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "hou\\": "hou/",
+            "app\\": "app/"
+        },
+        "files": [
+            "library/common.php"
+        ]
+    }
+}
