@@ -19,7 +19,7 @@
             "app\\": "app/"
         },
         "files": [
-            "library/common.php"
+            "hou/common.php"
         ]
     }
 }
