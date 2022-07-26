@@ -73,7 +73,8 @@ class App
             });
 
             $http->on('workerStart', function (\swoole_http_server $serv, int $worker_id) {
-                if (1 == $worker_id) {
+                if (1 == $worker_id)
+                {
                     if (function_exists('opcache_reset')) {
                         //清除opcache 缓存，swoole模式下其实可以关闭opcache
                         \opcache_reset();
@@ -82,8 +83,10 @@ class App
                 try {
                     //加载配置，让此处加载的配置可热更新
                     Config::loadLazy();
+
                     //日志初始化
                     Log::init();
+                    Log::info("http workerStart! workerId : {worker_id}", ['{worker_id}' => $worker_id]);
                     $mysqlConfig = Config::get('mysql');
                     if (!empty($mysqlConfig)) {
                         //配置了mysql, 初始化mysql连接池
