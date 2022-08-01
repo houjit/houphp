@@ -9,33 +9,16 @@
 // | Author: Amos <amos@houjit.com>
 // +----------------------------------------------------------------------
 declare (strict_types = 1);
-namespace hou\helper;
-use hou\Config;
+namespace app\dao;
+use hou\mvc\Dao;
 use hou\Singleton;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
-class Template
+class User extends Dao
 {
     use Singleton;
 
-    public $template;
-
     public function __construct()
     {
-        $templateConfig = Config::get('template');
-        $loader = new FilesystemLoader($templateConfig['path']);
-        $this->template = new Environment($loader, array(
-            'cache' => $templateConfig['cache'],
-            'auto_reload' => true
-        ));
-    }
-
-    public function clear()
-    {
-        if ($this->template)
-        {
-            $this->template->clearTemplateCache();
-        }
+        parent::__construct('\entity\User');
     }
 }

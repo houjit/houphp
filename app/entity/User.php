@@ -9,35 +9,23 @@
 // | Author: Amos <amos@houjit.com>
 // +----------------------------------------------------------------------
 declare (strict_types = 1);
-namespace hou\mvc;
-use hou\Config;
-use hou\helper\Template;
-use hou\pool\Context;
+namespace app\entity;
+use hou\mvc\Entity;
 
-class Controller
+class User extends Entity
 {
-
     /**
-     * @var \EasySwoole\Http\Request
+     * 对应的数据库表名
      */
-    protected $request;
+    const TABLE_NAME = 'user';
     /**
-     * @var \Twig\Environment
+     * 主键字段名
      */
-    protected $template;
+    const PK_ID = 'id';
 
-    const _CONTROLLER_KEY_ = '__CTR__';
-    const _METHOD_KEY_ = '__METHOD__';
-
-    public function __construct()
-    {
-        //通过context拿到$request, 再也不用担收数据错乱了
-        /**
-         * @var $context \hou\coroutine\Context
-         */
-        $context = Context::getInstance()->get();
-        $this->request = $context->getRequest();
-        $this->template = Template::getInstance()->template;
-    }
+    //以下对应的数据库字段名
+    public $id;
+    public $name;
+    public $password;
 
 }

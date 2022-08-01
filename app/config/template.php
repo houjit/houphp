@@ -9,25 +9,13 @@
 // | Author: Amos <amos@houjit.com>
 // +----------------------------------------------------------------------
 declare (strict_types = 1);
-namespace hou\mvc;
+use hou\App;
 
-class Entity
-{
-    /**
-     * Entity constructor.
-     * @param array $array
-     * @desc 把数组填充到entity
-     */
-    public function __construct(array $array)
-    {
-        if (empty($array)) {
-            return $this;
-        }
-
-        foreach ($array as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
-        }
-    }
-}
+return [
+    'template' => [
+        //模板页面的存放目录
+        'path' => App::$appPath . DS . 'template' . DS . 'default',    //模版目录, 空则默认 template/default
+        //模板缓存页面的存放目录
+        'cache' => App::$appPath . DS . 'template' . DS . 'default_cache',    //缓存目录, 空则默认 template/default_cache
+    ]
+];

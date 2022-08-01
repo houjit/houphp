@@ -1,0 +1,5 @@
+vendor/
+storage/
+app/log
+.env
+.idea
