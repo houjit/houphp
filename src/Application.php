@@ -4,9 +4,9 @@
  *
  * @link     https://houphp.cn
  * @document https://doc.houphp.cn
- * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
+ * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
-namespace Simps;
+namespace hou;
 
 class Application
 {
@@ -55,16 +55,16 @@ EOL;
         $command = explode(':', $funcName);
         switch ($command[0]) {
             case 'http':
-                $className = \Simps\Server\Http::class;
+                $className = \hou\Server\Http::class;
                 break;
             case 'ws':
-                $className = \Simps\Server\WebSocket::class;
+                $className = \hou\Server\WebSocket::class;
                 break;
             case 'mqtt':
-                $className = \Simps\Server\MqttServer::class;
+                $className = \hou\Server\MqttServer::class;
                 break;
             case 'main':
-                $className = \Simps\Server\MainServer::class;
+                $className = \hou\Server\MainServer::class;
                 break;
             default:
                 // 用户自定义server

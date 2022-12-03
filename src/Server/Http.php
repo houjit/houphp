@@ -1,20 +1,17 @@
-<?php
-
-declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
- * This file is part of Simps.
+ *  HouCMF [ 用心做好每个站 用心服务好每个客户 ]
  *
- * @link     https://simps.io
- * @document https://doc.simps.io
- * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
+ * @link     https://houphp.cn
+ * @document https://doc.houphp.cn
+ * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
-namespace Simps\Server;
-
-use Simps\Application;
-use Simps\Context;
-use Simps\Listener;
-use Simps\Route;
-use Simps\Server\Protocol\HTTP\SimpleRoute;
+namespace hou\Server;
+use hou\Application;
+use hou\Context;
+use hou\Listener;
+use hou\Route;
+use hou\Server\Protocol\HTTP\SimpleRoute;
 use Swoole\Http\Server;
 use Swoole\Server as HttpServer;
 
@@ -24,7 +21,7 @@ class Http
 
     protected $_config;
 
-    /** @var \Simps\Route */
+    /** @var \hou\Route */
     protected $_route;
 
     public function __construct()
@@ -32,7 +29,8 @@ class Http
         $config = config('servers');
         $httpConfig = $config['http'];
         $this->_config = $httpConfig;
-        if (isset($httpConfig['settings']['only_simple_http'])) {
+        if (isset($httpConfig['settings']['only_simple_http']))
+        {
             $this->_server = new HttpServer($httpConfig['ip'], $httpConfig['port'], $config['mode']);
             $this->_server->on('workerStart', [$this, 'onSimpleWorkerStart']);
             $this->_server->on('receive', [$this, 'onReceive']);

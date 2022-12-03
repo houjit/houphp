@@ -1,21 +1,19 @@
-<?php
-
-declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
- * This file is part of Simps.
+ *  HouCMF [ 用心做好每个站 用心服务好每个客户 ]
  *
- * @link     https://simps.io
- * @document https://doc.simps.io
- * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
+ * @link     https://houphp.cn
+ * @document https://doc.houphp.cn
+ * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
-namespace Simps\Server\Protocol\HTTP;
+namespace hou\Server\Protocol\HTTP;
 
 class SimpleResponse
 {
     /**
      * @var string
      */
-    protected static $_version = '1.1';
+    protected static $_version = '2.0';
 
     /**
      * @var array
@@ -92,13 +90,13 @@ class SimpleResponse
         $body_len = \strlen($body);
         $version = static::$_version;
         if (empty($headers)) {
-            return "HTTP/{$version} {$status} {$reason}\r\nServer: simps-http-server\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: {$body_len}\r\nConnection: keep-alive\r\n\r\n{$body}";
+            return "HTTP/{$version} {$status} {$reason}\r\nServer: houphp-http-server\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: {$body_len}\r\nConnection: keep-alive\r\n\r\n{$body}";
         }
 
         $head = "HTTP/{$version} {$status} {$reason}\r\n";
         $headers = $headers;
         if (! isset($headers['Server'])) {
-            $head .= "Server: simps-http-server\r\n";
+            $head .= "Server: houphp-http-server\r\n";
         }
         foreach ($headers as $name => $value) {
             if (\is_array($value)) {

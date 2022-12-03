@@ -8,10 +8,10 @@ declare(strict_types=1);
  * @document https://doc.simps.io
  * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
  */
-namespace Simps\Client;
+namespace hou\Client;
 
-use Simps\Exception\Protocol\MQTTException;
-use Simps\Server\Protocol\MQTT;
+use hou\Exception\Protocol\MQTTException;
+use hou\Server\Protocol\MQTT;
 use Swoole\Coroutine;
 use Swoole\Coroutine\Client;
 

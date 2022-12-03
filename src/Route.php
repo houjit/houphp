@@ -1,15 +1,12 @@
-<?php
-
-declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
- * This file is part of Simps.
+ *  HouCMF [ 用心做好每个站 用心服务好每个客户 ]
  *
- * @link     https://simps.io
- * @document https://doc.simps.io
- * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
+ * @link     https://houphp.cn
+ * @document https://doc.houphp.cn
+ * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
-namespace Simps;
-
+namespace hou;
 use FastRoute\Dispatcher;
 use RuntimeException;
 use function FastRoute\simpleDispatcher;
@@ -119,9 +116,11 @@ class Route
         $uri = trim($uri, '/');
         $uri = explode('/', $uri);
 
-        if ($uri[0] === '') {
-            $className = '\\App\\Controller\\IndexController';
-            if (class_exists($className) && method_exists($className, 'index')) {
+        if ($uri[0] === '')
+        {
+            $className = '\\app\\controller\\Index';
+            if (class_exists($className) && method_exists($className, 'index'))
+            {
                 return (new $className())->index($request, $response);
             }
         }

@@ -1,18 +1,15 @@
-<?php
-
-declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
- * This file is part of Simps.
+ *  HouCMF [ 用心做好每个站 用心服务好每个客户 ]
  *
- * @link     https://simps.io
- * @document https://doc.simps.io
- * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
+ * @link     https://houphp.cn
+ * @document https://doc.houphp.cn
+ * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
-namespace Simps\Server;
-
-use Simps\Application;
-use Simps\Listener;
-use Simps\Server\Protocol\MQTT;
+namespace hou\Server;
+use hou\Application;
+use hou\Listener;
+use hou\Server\Protocol\MQTT;
 use Swoole\Server;
 
 class MqttServer
