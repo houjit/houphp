@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
- * This file is part of Simps.
+ *  HouCMF [ 用心做好每个站 用心服务好每个客户 ]
  *
- * @link     https://simps.io
- * @document https://doc.simps.io
+ * @link     https://houphp.cn
+ * @document https://doc.houphp.cn
  * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
  */
 namespace Simps;

@@ -1,20 +1,20 @@
 [English](./README.md) | 中文
 
 <p align="center">
-    <a href="https://simps.io" target="_blank">
+    <a href="https://houphp.cn" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/sy-records/staticfile@master/images/simps.png" alt="Simps" height="200px" />
     </a>
 </p>
 
-# Simps
+# HouPHP
 
-[![Simps License](https://poser.pugx.org/simple-swoole/simps/license)](LICENSE)
-[![Latest Version](https://img.shields.io/packagist/v/simple-swoole/simps.svg)](https://packagist.org/packages/simple-swoole/simps)
-[![Contact Simps Team](https://img.shields.io/badge/contact-@Simps%20Team-blue.svg)](mailto:team@simps.io)
+[![HouPHP License](https://poser.pugx.org/houjit/houphp/license)](LICENSE)
+[![Latest Version](https://img.shields.io/packagist/v/simple-swoole/simps.svg)](https://packagist.org/packages/houjit/houphp)
+[![Contact HouPHP Team](https://img.shields.io/badge/contact-@Simps%20Team-blue.svg)](mailto:amos@houjit.com)
 [![PHP Version](https://img.shields.io/badge/php-%3E=7.1-brightgreen.svg)](https://www.php.net)
 [![Swoole Version](https://img.shields.io/badge/swoole-%3E=4.4.0-brightgreen.svg)](https://github.com/swoole/swoole-src)
 
-🚀 Simps 是一个简单、轻量并且拥有超高性能的PHP协程框架。
+🚀 HouPHP 是一个简单、轻量并且拥有超高性能的PHP协程框架。
 
 ## 性能测试
 
@@ -32,23 +32,23 @@
 
 ## 文档
 
-[https://doc.simps.io](https://doc.simps.io)
+[https://doc.houphp.cn](https://doc.houphp.cn)
 
 ## 如何贡献
 
-非常欢迎您对 Simps 的开发作出贡献！
+HouPHP框架基于 Simps 做了二次封闭，您可以对 Simps开发作出贡献， 非常欢迎您对 Simps 的开发作出贡献！
 
 你可以选择以下方式向 Simps 贡献：
 
-* [发布issue进行问题反馈和建议](https://github.com/simple-swoole/simps/issues)
+* [发布issue进行问题反馈和建议](https://github.com/houjit/houphp/issues)
 * 通过Pull Request提交修复
 * 完善我们的文档和例子
 
 ## 贡献者
 
-项目的发展离不开以下贡献者的努力! [[Contributors](https://github.com/simple-swoole/simps/graphs/contributors)].
+项目的发展离不开以下贡献者的努力! [[Contributors](https://github.com/houjit/houphp/graphs/contributors)].
 
-<a href="https://github.com/simple-swoole/simps/graphs/contributors"><img src="https://opencollective.com/simps/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/houjit/houphp/graphs/contributors"><img src="https://opencollective.com/simps/contributors.svg?width=890&button=false" /></a>
 
 ## 开源协议
 
