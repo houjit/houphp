@@ -11,7 +11,7 @@ use hou\Application;
 use hou\Context;
 use hou\Listener;
 use hou\Route;
-use hou\Server\Protocol\HTTP\SimpleRoute;
+use hou\Server\Protocol\HTTP\HouRoute;
 use Swoole\Http\Server;
 use Swoole\Server as HttpServer;
 
@@ -47,19 +47,23 @@ class Http
         }
         $this->_server->set($httpConfig['settings']);
 
-        if ($config['mode'] == SWOOLE_BASE) {
+        if ($config['mode'] == SWOOLE_BASE)
+        {
             $this->_server->on('managerStart', [$this, 'onManagerStart']);
         } else {
             $this->_server->on('start', [$this, 'onStart']);
         }
 
-        foreach ($httpConfig['callbacks'] as $eventKey => $callbackItem) {
+        foreach ($httpConfig['callbacks'] as $eventKey => $callbackItem)
+        {
             [$class, $func] = $callbackItem;
             $this->_server->on($eventKey, [$class, $func]);
         }
 
-        if (isset($this->_config['process']) && ! empty($this->_config['process'])) {
-            foreach ($this->_config['process'] as $processItem) {
+        if (isset($this->_config['process']) && ! empty($this->_config['process']))
+        {
+            foreach ($this->_config['process'] as $processItem)
+            {
                 [$class, $func] = $processItem;
                 $this->_server->addProcess($class::$func($this->_server));
             }
@@ -88,7 +92,7 @@ class Http
 
     public function onHouWorkerStart(HttpServer $server, int $workerId)
     {
-        $this->_route = SimpleRoute::getInstance();
+        $this->_route = HouRoute::getInstance();
         Listener::getInstance()->listen('houWorkerStart', $server, $workerId);
     }
 

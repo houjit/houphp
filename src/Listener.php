@@ -20,7 +20,8 @@ class Listener
 
     public static function getInstance()
     {
-        if (is_null(self::$instance)) {
+        if (is_null(self::$instance))
+        {
             self::$instance = new self();
             self::$config = Config::getInstance()->get('listeners');
         }

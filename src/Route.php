@@ -30,7 +30,8 @@ class Route
 
             self::$config = Config::getInstance()->get('routes', []);
             self::$dispatcher = simpleDispatcher(
-                function (\FastRoute\RouteCollector $routerCollector) {
+                function (\FastRoute\RouteCollector $routerCollector)
+                {
                     foreach (self::$config as $routerDefine) {
                         $routerCollector->addRoute($routerDefine[0], $routerDefine[1], $routerDefine[2]);
                     }

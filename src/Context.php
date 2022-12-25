@@ -7,7 +7,6 @@
  * @license  https://github.com/houjit/houphp/blob/master/LICENSE
  */
 namespace hou;
-
 use Swoole\Coroutine;
 
 class Context
@@ -24,9 +23,16 @@ class Context
         return $value;
     }
 
+    /**
+     * @param string $id
+     * @param $default
+     * @param $coroutineId
+     * @return mixed|null
+     */
     public static function get(string $id, $default = null, $coroutineId = null)
     {
-        if (Context::inCoroutine()) {
+        if (Context::inCoroutine())
+        {
             if ($coroutineId !== null) {
                 return Coroutine::getContext($coroutineId)[$id] ?? $default;
             }
@@ -36,6 +42,11 @@ class Context
         return static::$nonCoContext[$id] ?? $default;
     }
 
+    /**
+     * @param string $id
+     * @param $coroutineId
+     * @return bool
+     */
     public static function has(string $id, $coroutineId = null)
     {
         if (Context::inCoroutine()) {
@@ -62,7 +73,8 @@ class Context
     public static function override(string $id, \Closure $closure)
     {
         $value = null;
-        if (self::has($id)) {
+        if (self::has($id))
+        {
             $value = self::get($id);
         }
         $value = $closure($value);
@@ -70,6 +82,9 @@ class Context
         return $value;
     }
 
+    /**
+     * @return bool
+     */
     public static function inCoroutine(): bool
     {
         return Coroutine::getCid() > 0;
