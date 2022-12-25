@@ -12,7 +12,7 @@ use RuntimeException;
 use hou\Config;
 use function FastRoute\simpleDispatcher;
 
-class SimpleRoute
+class HouRoute
 {
     private static $instance;
 
@@ -28,7 +28,8 @@ class SimpleRoute
 
     public static function getInstance()
     {
-        if (is_null(self::$instance)) {
+        if (is_null(self::$instance))
+        {
             self::$instance = new self();
 
             self::$config = Config::getInstance()->get('routes', []);
@@ -64,12 +65,14 @@ class SimpleRoute
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
 
-                if (isset(self::$cache[$handler])) {
+                if (isset(self::$cache[$handler]))
+                {
                     $cache_entity = self::$cache[$handler];
                     return $cache_entity[0]->{$cache_entity[1]}($server, $fd, $vars ?? null);
                 }
 
-                if (is_string($handler)) {
+                if (is_string($handler))
+                {
                     $handlerArr = explode('@', $handler);
                     if (count($handlerArr) != 2) {
                         throw new RuntimeException("Route {$uri} config error, Only @ are supported");
@@ -84,7 +87,8 @@ class SimpleRoute
 
                     $controller = new $className();
 
-                    if (! method_exists($controller, $func)) {
+                    if (! method_exists($controller, $func))
+                    {
                         throw new RuntimeException("Route {$uri} defined '{$func}' Method Not Found");
                     }
 
@@ -101,11 +105,11 @@ class SimpleRoute
                 return $this->defaultRouter($server, $fd, $uri);
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
-                return $server->send($fd, SimpleResponse::build('', 405));
+                return $server->send($fd, houResponse::build('', 405));
 //                throw new RuntimeException('Request Method Not Allowed', 405);
                 break;
             default:
-                return $server->send($fd, SimpleResponse::build('', 400));
+                return $server->send($fd, houResponse::build('', 400));
         }
         throw new RuntimeException("Undefined Route {$uri}");
     }
@@ -129,7 +133,7 @@ class SimpleRoute
             }
 //            throw new RuntimeException('The default route index/index class does not exist', 404);
         }
-        return $server->send($fd, SimpleResponse::build('', 404));
+        return $server->send($fd, houResponse::build('', 404));
 //        throw new RuntimeException('Route Not Found', 404);
     }
 }

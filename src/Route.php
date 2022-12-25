@@ -52,7 +52,8 @@ class Route
         $uri = $request->server['request_uri'] ?? '/';
         $routeInfo = self::$dispatcher->dispatch($method, $uri);
 
-        switch ($routeInfo[0]) {
+        switch ($routeInfo[0])
+        {
             case Dispatcher::NOT_FOUND:
                 return $this->defaultRouter($request, $response, $uri);
             case Dispatcher::METHOD_NOT_ALLOWED:
@@ -61,9 +62,11 @@ class Route
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
-                if (is_string($handler)) {
+                if (is_string($handler))
+                {
                     $handler = explode('@', $handler);
-                    if (count($handler) != 2) {
+                    if (count($handler) != 2)
+                    {
                         throw new RuntimeException("Route {$uri} config error, Only @ are supported");
                     }
 
@@ -84,18 +87,21 @@ class Route
                         return $controller->{$func}($request, $response, $vars ?? null);
                     };
                     $middleware = 'middleware';
-                    if (property_exists($controller, $middleware)) {
+                    if (property_exists($controller, $middleware))
+                    {
                         $classMiddlewares = $controller->{$middleware}['__construct'] ?? [];
                         $methodMiddlewares = $controller->{$middleware}[$func] ?? [];
                         $middlewares = array_merge($classMiddlewares, $methodMiddlewares);
-                        if ($middlewares) {
+                        if ($middlewares)
+                        {
                             $middlewareHandler = $this->packMiddleware($middlewareHandler, array_reverse($middlewares));
                         }
                     }
                     return $middlewareHandler($request, $response, $vars ?? null);
                 }
 
-                if (is_callable($handler)) {
+                if (is_callable($handler))
+                {
                     return call_user_func_array($handler, [$request, $response, $vars ?? null]);
                 }
 

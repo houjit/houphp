@@ -8,7 +8,7 @@
  */
 namespace hou\Server\Protocol\HTTP;
 
-class SimpleResponse
+class HouResponse
 {
     /**
      * @var string

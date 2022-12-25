@@ -32,7 +32,7 @@ class Http
         if (isset($httpConfig['settings']['only_simple_http']))
         {
             $this->_server = new HttpServer($httpConfig['ip'], $httpConfig['port'], $config['mode']);
-            $this->_server->on('workerStart', [$this, 'onSimpleWorkerStart']);
+            $this->_server->on('workerStart', [$this, 'onHouWorkerStart']);
             $this->_server->on('receive', [$this, 'onReceive']);
             unset($httpConfig['settings']['only_simple_http']);
         } else {
@@ -86,10 +86,10 @@ class Http
         Listener::getInstance()->listen('workerStart', $server, $workerId);
     }
 
-    public function onSimpleWorkerStart(HttpServer $server, int $workerId)
+    public function onHouWorkerStart(HttpServer $server, int $workerId)
     {
         $this->_route = SimpleRoute::getInstance();
-        Listener::getInstance()->listen('simpleWorkerStart', $server, $workerId);
+        Listener::getInstance()->listen('houWorkerStart', $server, $workerId);
     }
 
     public function onRequest(\Swoole\Http\Request $request, \Swoole\Http\Response $response)
