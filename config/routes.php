@@ -9,8 +9,8 @@
 // | Author: amos <amos@houjit.com>
 // +----------------------------------------------------------------------
 return [
-    ['GET', '/', '\app\controller\IndexController@index'],
-    ['GET', '/hello[/{name}]', '\app\controller\IndexController@hello'],
+    ['GET', '/', '\app\controller\Index@index'],
+    ['GET', '/hello[/{name}]', '\app\controller\Index@hello'],
     ['GET', '/favicon.ico', function ($request, $response) {
         $response->end('');
     }],

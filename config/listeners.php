@@ -14,6 +14,6 @@ return [
     ],
     //Server::onWorkerStart
     'workerStart' => [
-        [\App\Listens\Pool::class, 'workerStart'],
+        [\app\listens\Pool::class, 'workerStart'],
     ],
 ];
