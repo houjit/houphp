@@ -1,0 +1,29 @@
+{
+    "name": "houjit/houphp",
+    "type": "project",
+    "description": "A simple, lightweight and high-performance PHP coroutine framework.",
+    "keywords": [
+        "php",
+        "swoole",
+        "coroutine",
+        "houoole"
+    ],
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=7.4",
+        "ext-swoole": ">=4.4",
+        "hou-swoole/houoole": "~1.0.0",
+        "hou-swoole/db": "~1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "bin": [
+        "bin/hou.php"
+    ],
+    "config": {
+        "optimize-autoloader": true
+    }
+}
