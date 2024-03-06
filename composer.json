@@ -12,8 +12,8 @@
     "require": {
         "php": ">=7.4",
         "ext-swoole": ">=4.4",
-        "hou-swoole/houoole": ">=3.0.0",
-        "hou-swoole/db": ">=3.0.0"
+        "houjit/framework": ">=3.0.0",
+        "houjit/db": ">=3.0.0"
     },
     "autoload": {
         "psr-4": {
