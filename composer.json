@@ -1,6 +1,6 @@
 {
     "name": "houjit/houphp",
-    "type": "project",
+    "type": "framework",
     "description": "A simple, lightweight and high-performance PHP coroutine framework.",
     "keywords": [
         "php",
