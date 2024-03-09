@@ -19,6 +19,10 @@ return [
         ],
         'settings' => [
             'worker_num' => swoole_cpu_num(),
+            'pid_file'   => __DIR__.'/../bin/server.pid',
+            'debug_mode' => true,
+            'display_errors' => true,
+            'log_level' => SWOOLE_LOG_DEBUG,
         ],
     ],
     'ws' => [
