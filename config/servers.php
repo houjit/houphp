@@ -25,7 +25,6 @@ return [
             'worker_num'            => swoole_cpu_num(),
             'task_worker_num'       => swoole_cpu_num(),
             'enable_static_handler' => true,
-            'document_root'         => root_path('public'),
             'package_max_length'    => 20 * 1024 * 1024,
             'buffer_output_size'    => 10 * 1024 * 1024,
             'socket_buffer_size'    => 128 * 1024 * 1024,
