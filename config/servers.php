@@ -21,15 +21,6 @@ return [
             'worker_num' => swoole_cpu_num(),
             'pid_file'   => __DIR__.'/../bin/server.pid',
             'log_file'   => __DIR__.'/../bin/swoole.log',
-            'reactor_num'           => swoole_cpu_num(),
-            'worker_num'            => swoole_cpu_num(),
-            'task_worker_num'       => swoole_cpu_num(),
-//            'enable_static_handler' => true,
-//            'package_max_length'    => 20 * 1024 * 1024,
-//            'buffer_output_size'    => 10 * 1024 * 1024,
-//            'socket_buffer_size'    => 128 * 1024 * 1024,
-//            'heartbeat_idle_time'        => 600, // 一个连接如果600秒内未向服务器发送任何数据，此连接将被强制关闭
-//            'heartbeat_check_interval'   => 60, // 每60秒遍历一次
             'debug_mode' => true,
             'display_errors' => true,
             'log_level' => SWOOLE_LOG_DEBUG,
